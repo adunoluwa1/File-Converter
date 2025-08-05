@@ -5,6 +5,7 @@
 
 # Environment files
 .env
+.DS_Store
 
 
 # User-specific files
