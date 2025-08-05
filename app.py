@@ -270,8 +270,9 @@ def to_json(logger:Optional[logging.Logger], df:pd.DataFrame, tgt_base_dir:str, 
         os.makedirs(json_dir,exist_ok=True)
         json_file_name:str = f"{os.path.splitext(os.path.basename(csv_file_path))[0]}.json"
         logger.info(f"Successfully created directory for json file: {json_dir}")
-        df.to_json(json_file_name,orient='records',lines=True)
-        logger.info(f"Successfully converted DataFrame to JSON at {json_file_name}")
+        json_file_path = os.path.join(json_dir,json_file_name)
+        df.to_json(json_file_path,orient='records',lines=True)
+        logger.info(f"Successfully converted DataFrame to JSON at {json_file_path}")
         return True
     except IOError as e:
         logger.error(f"Error converting DataFrame to JSON: {e}",exc_info=True)
